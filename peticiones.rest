@@ -1,0 +1,13 @@
+###
+POST  http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+    "name":"Sarai",
+    "surname":"Ruiz",
+    "username":"Sarai12",
+    "password":"123",
+    "date_birth":"1989-10-07",
+    "email":"sarai@gmail.com",
+    "gender":"f"
+}

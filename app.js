@@ -6,6 +6,10 @@ const app = express();
 
 // TODO: Configuración de los manejadores
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
 app.use(require('./routes'));
 
 module.exports = app;
