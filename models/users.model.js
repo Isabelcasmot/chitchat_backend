@@ -6,4 +6,11 @@ const create = ({ name, surname, username, password, date_birth, email }) => {
 
 }
 
-module.exports = { create }
+const login = ({ username, password }) => {
+    return db.query('SELECT * FROM users WHERE username=? AND password=?', [username, password])
+}
+
+module.exports = {
+    create,
+    login
+}

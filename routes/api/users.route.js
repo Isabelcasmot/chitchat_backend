@@ -18,4 +18,15 @@ router.post('/register', async (req, res) => {
     }
 })
 
+router.post('/login', async (req, res) => {
+
+    try {
+        const [result] = await userModel.login(req.body);
+        res.json(result);
+    } catch (error) {
+        res.json(error)
+    }
+
+})
+
 module.exports = router;
