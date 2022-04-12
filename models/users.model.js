@@ -10,7 +10,13 @@ const getUserByUsername = ({ username }) => {
     return db.query('SELECT * FROM users WHERE username=?', [username])
 }
 
+const findAll = ({ name, surname, username, gender }) => {
+
+    return db.query('SELECT * FROM users', [name, surname, username, gender])
+}
+
 module.exports = {
     create,
-    getUserByUsername
+    getUserByUsername,
+    findAll
 }

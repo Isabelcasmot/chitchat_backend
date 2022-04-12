@@ -3,11 +3,18 @@ const userModel = require('../../models/users.model');
 const bcrypt = require('bcrypt');
 const utils = require('../../helpers/utils');
 
-// router.get
-//     ('/', (req, res) => {
+router.get
+    ('/', async (req, res) => {
+        try {
+            const result = await userModel.findAll()
+            res.json(result)
+        } catch (error) {
+            res.json(error)
 
-//         res.end('EL USERS FUNSIONA')
-//     })
+        }
+
+
+    })
 
 router.post('/register', async (req, res) => {
 
