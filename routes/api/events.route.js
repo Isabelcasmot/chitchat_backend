@@ -17,4 +17,15 @@ router.post('/', async (req, res) => {
 
 })
 
+
+router.get('/', async (req, res) => {
+    try {
+        const [result] = await eventModel.getAll()
+        res.json(result)
+    } catch (error) {
+        res.json({ error: 'No hemos podido recuperar la informacion' })
+    }
+
+})
+
 module.exports = router;

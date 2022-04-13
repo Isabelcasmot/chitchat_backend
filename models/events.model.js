@@ -5,6 +5,13 @@ const create = ({ title, date, time, image, description, address, users_id }) =>
         [title, date, time, image, description, address, users_id])
 }
 
+const getAll = () => {
+
+    return db.query('SELECT * FROM events')
+}
+
+
 module.exports = {
-    create
+    create,
+    getAll
 }
