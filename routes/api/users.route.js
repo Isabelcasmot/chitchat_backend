@@ -6,7 +6,8 @@ const utils = require('../../helpers/utils');
 router.get
     ('/', async (req, res) => {
         try {
-            const result = await userModel.findAll()
+            const [result] = await userModel.findAll()
+            console.log(result)
             res.json(result)
         } catch (error) {
             res.json(error)
