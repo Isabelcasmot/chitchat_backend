@@ -6,7 +6,8 @@ const utils = require('../../helpers/utils');
 router.get
     ('/', async (req, res) => {
         try {
-            const result = await userModel.findAll()
+            const [result] = await userModel.findAll()
+            console.log(result)
             res.json(result)
         } catch (error) {
             res.json(error)
@@ -22,12 +23,20 @@ router.post('/register', async (req, res) => {
 
     try {
         const [result] = await userModel.create(req.body)
+
+        const userId = result.insertId
+        const lanHas = req.body.languageHas
+        const lanWant = req.body.languageWant
+        await userModel.createLan({ user_id: userId, language_id: lanHas, type: "h" })
+        await userModel.createLan({ user_id: userId, language_id: lanWant, type: "w" })
+
         res.json({
             success: 'El usuario se ha registrado correctamente',
             result: result
         });
 
     } catch (error) {
+        console.log(error)
         res.json(error)
     }
 })
