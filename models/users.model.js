@@ -19,7 +19,8 @@ const getUserByUsername = ({ username }) => {
 
 const findAll = () => {
 
-    return db.query('SELECT name, surname, username, gender FROM users')
+    return db.query('SELECT name, surname, username, gender,(SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "w" and tbi.language_id = l.id ) as languageWant, (SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "h" and tbi.language_id = l.id ) as languageHas   FROM users u;'
+    )
 }
 
 module.exports = {
