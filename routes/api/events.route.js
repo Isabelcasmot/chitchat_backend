@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
     try {
         const [result] = await eventModel.getAll()
         res.json(result)
+        console.log(result)
     } catch (error) {
         res.json({ error: 'No hemos podido recuperar la informacion' })
     }
