@@ -10,8 +10,13 @@ const getAll = () => {
     return db.query('SELECT * FROM events')
 }
 
+const deleteEvent = (eventId) => {
+    return db.query('DELETE FROM events WHERE id = ?', [eventId])
+
+}
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    deleteEvent
 }
