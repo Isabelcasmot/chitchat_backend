@@ -15,6 +15,25 @@ router.get
 
     })
 
+router.get('/lan/:lan/type/:type', async (req, res) => {
+
+    try {
+        const [resultH] = await userModel.getByLan(req.params.lan, req.params.type)
+        res.json(resultH)
+    } catch (error) {
+        res.json(error)
+
+    }
+
+
+
+
+})
+
+
+
+
+
 router.post('/register', async (req, res) => {
 
     const hash = bcrypt.hashSync(req.body.password, 12)

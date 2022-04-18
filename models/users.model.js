@@ -27,10 +27,17 @@ const findAll = () => {
     )
 }
 
+const getByLan = (language_id, type) => {
+    return db.query('SELECT * FROM tbi_languages_users tbi, users u WHERE tbi.language_id = ? and tbi.type= ? AND u.id = tbi.user_id;', [language_id, type])
+
+}
+
+
 module.exports = {
     create,
     getUserByUsername,
     getById,
     findAll,
-    createLan
+    createLan,
+    getByLan
 }
