@@ -27,6 +27,7 @@ const findAll = () => {
     )
 }
 
+
 module.exports = {
     create,
     getUserByUsername,
