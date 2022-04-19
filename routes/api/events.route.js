@@ -16,11 +16,12 @@ router.post('/new', async (req, res) => {
         req.body.users_id = req.user[0].id;
         //Aqui obtenemos la latitud y la longitud
         const latlng = await geocoder.geocode(req.body.address);
-        console.log(latlng)
+
         req.body.lat = latlng[0].latitude;
         req.body.lng = latlng[0].longitude;
         const [result] = await eventModel.create(req.body)
         res.json(result);
+        console.log(result)
 
 
     } catch (error) {
@@ -43,6 +44,7 @@ router.get('/', async (req, res) => {
 
 })
 
+
 router.get('/:eventId', async (req, res) => {
 
     try {
@@ -51,6 +53,19 @@ router.get('/:eventId', async (req, res) => {
 
     } catch (error) {
         res.json({ error: 'No hemos podido recuperar el evento' })
+
+    }
+
+})
+
+router.get('/lan/:lanId', async (req, res) => {
+
+    try {
+        const [result] = await eventModel.findByLan(req.params.lanId)
+        res.json(result)
+
+    } catch (error) {
+        res.json({ error: 'No hemos podido recuperar los eventos por idioma' })
 
     }
 
