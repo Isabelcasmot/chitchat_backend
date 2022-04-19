@@ -2,6 +2,7 @@ const router = require('express').Router();
 const userModel = require('../../models/users.model');
 const bcrypt = require('bcrypt');
 const utils = require('../../helpers/utils');
+const { checkToken } = require('../../helpers/middlewares');
 
 router.get
     ('/', async (req, res) => {
@@ -24,13 +25,13 @@ router.get('/lan/:lan/type/:type', async (req, res) => {
         res.json(error)
 
     }
-
-
-
-
 })
 
+router.get('/profile', checkToken, async (req, res) => {
 
+    res.json(req.user)
+
+})
 
 
 
