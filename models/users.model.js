@@ -28,7 +28,7 @@ const findAll = () => {
 }
 
 const getByLan = (language_id, type) => {
-    return db.query('SELECT name, surname, username, gender, (SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "w" and tbi.language_id = l.id ) as languageWant, (SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "h" and tbi.language_id = l.id ) as languageHas FROM tbi_languages_users tbi, users u  WHERE tbi.language_id = 1 and tbi.type= "h" AND u.id = tbi.user_id;', [language_id, type])
+    return db.query('SELECT name, surname, username, gender, (SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "w" and tbi.language_id = l.id ) as languageWant, (SELECT l.name FROM tbi_languages_users tbi, languages l WHERE tbi.user_id = u.id and tbi.type = "h" and tbi.language_id = l.id ) as languageHas FROM tbi_languages_users tbi, users u  WHERE tbi.language_id =? and tbi.type= ? AND u.id = tbi.user_id;', [language_id, type])
 
 }
 
