@@ -29,6 +29,7 @@ const checkToken = async (req, res, next) => {
 
     //Si paso por el checktoken consigo el usuario logueado
     const result = await usersModel.getById(obj.usuarioId);
+    //req.user nos da la informacion del usuario que ha accedido a la web
     req.user = result[0]
     console.log(req.user)
 
