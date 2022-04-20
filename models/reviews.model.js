@@ -1,7 +1,7 @@
-const create = ({ title, description, create_at, score, user_id, events_id }) => {
+const create = ({ title, description, score, users_id, events_id }) => {
 
-    return db.query('INSERT INTO reviews (title, description, create_at, score, user_id, events_id) VALUES (?,?,?,?,?,?)',
-        [title, description, create_at, score, user_id, events_id])
+    return db.query('INSERT INTO reviews (title, description,  score, users_id, events_id) VALUES (?,?,?,?,?)',
+        [title, description, score, users_id, events_id])
 
 
 };
