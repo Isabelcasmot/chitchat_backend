@@ -23,6 +23,13 @@ const findByLan = (pLanguageId) => {
     return db.query('SELECT e.*, l.name as language_name FROM events e, languages l WHERE language_id = ? AND e.language_id = l.id;', [pLanguageId])
 }
 
+const eventUsers = (pEventId) => {
+    return db.query('SELECT * FROM tbi_events_users tbi,users u WHERE tbi.event_id=? AND tbi.user_id=u.id', [pEventId])
+}
+
+const addEventUser = (pUser_id, pEvent_id) => {
+    return db.query('INSERT INTO tbi_events_users(user_id,event_id) VALUES (?,?)', [pUser_id, pEvent_id])
+}
 
 
 module.exports = {
@@ -30,6 +37,8 @@ module.exports = {
     getAll,
     deleteEvent,
     getById,
-    findByLan
+    findByLan,
+    eventUsers,
+    addEventUser
 
 }

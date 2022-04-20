@@ -14,7 +14,7 @@ const checkToken = async (req, res, next) => {
     const token = req.headers['authentication'];
 
     let obj;
-
+    //Isa y Sarai es la contraseña creada en el utils.js para que el token funcione
     try {
         obj = jwt.verify(token, 'Isa y Sarai son las mejores')
     } catch (error) {
