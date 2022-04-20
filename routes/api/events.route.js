@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const eventModel = require('../../models/events.model');
 const NodeGeocoder = require('node-geocoder');
+const { checkToken } = require('../../helpers/middlewares');
 const options = {
     provider: 'google',
     apiKey: 'AIzaSyBMOcTcAkobrlfKIBOJNz6lDw2R5fJsk_Q'
@@ -45,10 +46,30 @@ router.get('/', async (req, res) => {
 })
 
 
+router.get('/:eventId/addUser', checkToken, async (req, res) => {
+    try {
+        console.log(req.user)
+        const [result] = await eventModel.addEventUser(req.user[0].id, req.params.eventId)
+        res.json(result)
+    } catch (error) {
+        res.json({ error: 'No se ha añadido el usuario al evento' })
+        console.log(error)
+    }
+
+
+})
+
 router.get('/:eventId', async (req, res) => {
 
     try {
+
         const [result] = await eventModel.getById(req.params.eventId)
+        const [users] = await eventModel.eventUsers(req.params.eventId)
+
+        //Genero una nueva propiedad users y le añades los usuarios recuperados
+
+        result[0].users = users
+
         res.json(result)
 
     } catch (error) {
@@ -57,6 +78,8 @@ router.get('/:eventId', async (req, res) => {
     }
 
 })
+
+
 
 router.get('/lan/:lanId', async (req, res) => {
 
