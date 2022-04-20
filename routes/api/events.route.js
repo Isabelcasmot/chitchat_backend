@@ -73,6 +73,7 @@ router.get('/:eventId', async (req, res) => {
         res.json(result)
 
     } catch (error) {
+        console.log(error)
         res.json({ error: 'No hemos podido recuperar el evento' })
 
     }
