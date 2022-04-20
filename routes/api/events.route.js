@@ -11,7 +11,7 @@ const options = {
 const geocoder = NodeGeocoder(options);
 
 
-router.post('/new', async (req, res) => {
+router.post('/new', checkToken, async (req, res) => {
     console.log(req.user)
     try {
         req.body.users_id = req.user[0].id;
