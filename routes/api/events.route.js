@@ -73,13 +73,25 @@ router.get('/:eventId', async (req, res) => {
         res.json(result)
 
     } catch (error) {
-        console.log(error)
+
         res.json({ error: 'No hemos podido recuperar el evento' })
 
     }
 
 })
 
+router.get('/:eventId/reviews', async (req, res) => {
+    try {
+
+        const [result] = await eventModel.findReviews(req.params.eventId)
+        res.json(result)
+
+    } catch (error) {
+        console.log(error)
+        res.json(error)
+    }
+
+})
 
 
 router.get('/lan/:lanId', async (req, res) => {
