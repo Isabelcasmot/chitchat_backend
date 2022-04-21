@@ -36,7 +36,15 @@ router.get('/lan/:lan/type/:type', async (req, res) => {
 /* Profile */
 router.get('/profile', checkToken, async (req, res) => {
 
-    res.json(req.user)
+    //res.json(req.user)
+    try {
+        console.log(req.user)
+        const [result] = await userModel.getById(req.user[0].id)
+        res.json(result)
+
+    } catch (error) {
+        res.json(error)
+    }
 
 })
 
