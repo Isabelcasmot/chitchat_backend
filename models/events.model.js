@@ -31,6 +31,10 @@ const addEventUser = (pUser_id, pEvent_id) => {
     return db.query('INSERT INTO tbi_events_users(user_id,event_id) VALUES (?,?)', [pUser_id, pEvent_id])
 }
 
+const findReviews = (pEventId) => {
+
+    return db.query('SELECT * FROM reviews WHERE events_id= ?', [pEventId])
+}
 
 module.exports = {
     create,
@@ -39,6 +43,7 @@ module.exports = {
     getById,
     findByLan,
     eventUsers,
-    addEventUser
+    addEventUser,
+    findReviews
 
 }
