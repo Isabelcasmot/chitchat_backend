@@ -20,6 +20,7 @@ router.get('/lan/:lan/type/:type', async (req, res) => {
 
     try {
         const [resultH] = await userModel.getByLan(req.params.lan, req.params.type)
+        console.log(resultH)
         res.json(resultH)
     } catch (error) {
         res.json(error)
