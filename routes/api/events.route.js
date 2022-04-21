@@ -45,6 +45,16 @@ router.get('/', async (req, res) => {
 
 })
 
+router.get('/latlng', async (req, res) => {
+    try {
+        const [result] = await eventModel.getAllEvents()
+        res.json(result)
+    } catch (error) {
+
+    }
+
+})
+
 
 router.get('/:eventId/addUser', checkToken, async (req, res) => {
     try {
@@ -55,7 +65,6 @@ router.get('/:eventId/addUser', checkToken, async (req, res) => {
         res.json({ error: 'No se ha añadido el usuario al evento' })
         console.log(error)
     }
-
 
 })
 
