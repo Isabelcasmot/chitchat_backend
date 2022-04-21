@@ -10,6 +10,12 @@ const getAll = () => {
     return db.query('SELECT e.*, l.name as language_name FROM events e, languages l where e.language_id = l.id')
 }
 
+const getAllEvents = () => {
+
+    return db.query('SELECT * FROM events')
+
+}
+
 const deleteEvent = (pEventId) => {
     return db.query('DELETE FROM events WHERE id = ?', [pEventId])
 
@@ -44,6 +50,7 @@ module.exports = {
     findByLan,
     eventUsers,
     addEventUser,
-    findReviews
+    findReviews,
+    getAllEvents
 
 }
