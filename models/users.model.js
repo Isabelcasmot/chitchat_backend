@@ -32,6 +32,11 @@ const getByLan = (language_id, type) => {
 
 }
 
+const userEvents = (pUserId) => {
+    return db.query('SELECT * FROM tbi_events_users eu, events e WHERE eu.user_id= ? and eu.event_id= e.id;', [pUserId])
+}
+
+
 
 
 module.exports = {
@@ -40,6 +45,7 @@ module.exports = {
     getById,
     findAll,
     createLan,
-    getByLan
+    getByLan,
+    userEvents
 }
 

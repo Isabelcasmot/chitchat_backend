@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 const utils = require('../../helpers/utils');
 const { checkToken } = require('../../helpers/middlewares');
 
+
+
+/* All users */
 router.get
     ('/', async (req, res) => {
         try {
@@ -11,23 +14,26 @@ router.get
             res.json(result)
         } catch (error) {
             res.json(error)
-
         }
-
     })
 
-router.get('/lan/:lan/type/:type', async (req, res) => {
 
+
+/* Filter by Language */
+router.get('/lan/:lan/type/:type', async (req, res) => {
     try {
         const [resultH] = await userModel.getByLan(req.params.lan, req.params.type)
-        console.log(resultH)
+        // console.log(resultH)
         res.json(resultH)
     } catch (error) {
         res.json(error)
-
     }
 })
 
+
+
+
+/* Profile */
 router.get('/profile', checkToken, async (req, res) => {
 
     res.json(req.user)
@@ -35,6 +41,21 @@ router.get('/profile', checkToken, async (req, res) => {
 })
 
 
+/* events user */
+
+router.get('/profile/events', checkToken, async (req, res) => {
+
+    try {
+        console.log(req.user)
+        const [result] = await userModel.userEvents(req.user[0].id)
+        res.json(result)
+
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+/* Register Form*/
 
 router.post('/register', async (req, res) => {
 
@@ -61,6 +82,8 @@ router.post('/register', async (req, res) => {
     }
 })
 
+/* User Login */
+
 router.post('/login', async (req, res) => {
 
 
@@ -83,5 +106,16 @@ router.post('/login', async (req, res) => {
     })
 
 })
+
+
+/* Events user profile */
+
+router.get('/')
+
+
+
+
+
+
 
 module.exports = router;
